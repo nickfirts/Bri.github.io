@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Mesversario! 💝</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
+    <style>
+      
+
+        
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="main-container">
+        <h1 class="title animate__animated animate__bounce">¡Feliz Primer Mes Mi Amor! 💝</h1>
+        
+        <div class="main-card">
+            <div class="music-player">
+                <h3 style="text-align: center; margin-bottom: 15px; font-size: 1.3em;">✨ Stray Kids - Case 143 ✨</h3>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="play-button" onclick="toggleMusic()">
+                        ▶️ Play Case 143
+                    </button>
+                </div>
+            </div>
+
+            <div class="message">
+                <p>Mi amor precioso 💝</p>
+                <p>¡Un mes juntos! Como dice Case 143, "너를 향한 이 마음이 1, 4, 3" (Este sentimiento hacia ti es 1, 4, 3). Cada día contigo es especial y único.</p>
+                <p>Como los miembros de Stray Kids y sus adorables mascotas, somos perfectos juntos. 💫</p>
+                <p>Te quiero muchísimo! 💖</p>
+            </div>
+
+            <div class="skz-zoo-gallery">
+                <div class="skz-card animate__animated animate__fadeIn">
+                    <div class="skz-animal">🐺</div>
+                    <div class="skz-member">Bang Chan</div>
+                    <p>Wolf Chan</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 0.2s;">
+                    <div class="skz-animal">🦊</div>
+                    <div class="skz-member">Lee Know</div>
+                    <p>Fox Lee Know</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 0.4s;">
+                    <div class="skz-animal">🐰</div>
+                    <div class="skz-member">Changbin</div>
+                    <p>Bunny Changbin</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+                    <div class="skz-animal">🦘</div>
+                    <div class="skz-member">Hyunjin</div>
+                    <p>Kangaroo Hyunjin</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 0.8s;">
+                    <div class="skz-animal">🐱</div>
+                    <div class="skz-member">Han</div>
+                    <p>Quokka Han</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 1s;">
+                    <div class="skz-animal">🦁</div>
+                    <div class="skz-member">Felix</div>
+                    <p>Lion Felix</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 1.2s;">
+                    <div class="skz-animal">🐶</div>
+                    <div class="skz-member">Seungmin</div>
+                    <p>Puppy Seungmin</p>
+                </div>
+                <div class="skz-card animate__animated animate__fadeIn" style="animation-delay: 1.4s;">
+                    <div class="skz-animal">🐤</div>
+                    <div class="skz-member">I.N</div>
+                    <p>Baby Chick I.N</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="music" src="y2mate.com - Stray Kids  CASE 143 Traducida al Español.mp3"></audio>
+
+    <script>
+        let isPlaying = false;
+        const music = document.getElementById('music');
+        const progressBar = document.getElementById('progressBar');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.querySelector('.play-button').textContent = '▶️ Play Case 143';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.querySelector('.play-button').textContent = '⏸️ Pause';
+                createHeartBurst();
+            }
+        }
+
+        music.addEventListener('timeupdate', () => {
+            const progress = (music.currentTime / music.duration) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = ['❤️', '💖', '💝', '💕', '💗'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.getElementById('floatingHearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function createHeartBurst() {
+            for(let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createSparkle(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1500);
+        }
+
+        // Efectos automáticos
+        setInterval(() => {
+            if (Math.random() > 0.7) createHeart();
+        }, 1000);
+
+        // Efectos al mover el mouse
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.9) {
+                createSparkle(e);
+            }
+        });
+
+        // Efectos al hacer click en las tarjetas
+        document.querySelectorAll('.skz-card').forEach(card => {
+            card.addEventListener('click', () => {
+                createHeartBurst();
+                card.classList.add('animate__animated', 'animate__rubberBand');
+                setTimeout(() => card.classList.remove('animate__animated', 'animate__rubberBand'), 1000);
+            });
+        });
+    </script>
+</body>
+</html>
